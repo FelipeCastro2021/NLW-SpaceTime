@@ -1,0 +1,153 @@
+@use 'variables'
+  
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  text-decoration: none
+
+:root
+  font-size: 62.5%
+
+body *
+  font-size: 1.6rem
+  font-family: 'Roboto', sans-serif
+  color: variables.$text-color
+
+body
+  background-color: variables.$bg-color
+  min-height: 100vh
+
+  display: grid
+  grid-template-areas: "profile timeline"
+  grid-template-columns: repeat(2, 1fr)
+  grid-template-rows: 100vh
+
+/* Scroll Bar */
+::webkit-scrollbar
+  width: 8px
+
+::webkit-scrollbar-track
+  background-color: #2c2c31
+
+::webkit-scrollbar-thumb
+  background-color: #9e9ea0
+
+/* @keyframes entering
+  0%
+    background-color: red
+  
+  30%
+    background-color: green
+
+  78% 
+    opacity: 0%
+  
+  100%
+    opacity: 100% */
+
+@keyframes entering
+  from
+    opacity: 0
+    transform: translateY(-200px)
+  
+  to
+    opacity: 1
+    transform: translateY(0)
+  
+/* Profile */
+#profile
+  background-image: url('../assets/background.svg')
+  background-repeat: no-repeat
+  background-position: top right
+  background-size: auto 100%
+
+  grid-area: profile
+
+  display: flex
+  flex-direction: column
+  gap: 2rem
+  align-items: center
+  justify-content: center
+
+  border-right: 1px solid
+  border-image: variables.$linear
+
+  *
+      animation: entering 1s ease-in-out
+
+  img + img
+    max-width: 20rem
+    border-radius: 50%
+
+    border: 5px solid transparent
+    background: variables.$bg-linear
+  
+  p
+    font-size: 3.2rem
+    text-align: center
+
+  span
+    font-size: 1.2rem
+    color: variables.$span 
+
+/* TimeLine */
+nav
+  padding: 6.4rem
+
+  grid-area: timeline
+
+  overflow-y: scroll
+
+  animation: entering 1s ease-in-out
+
+.memory
+  display: flex
+  flex-direction: column
+  gap: 1.6rem
+
+  &:hover img
+    transform: scale(1.1)
+
+  small
+    color: variables.$date
+    font-size: 1.2rem 
+  
+  h1
+    font-size: 3.2rem
+
+  div
+    width: 100%
+    height: 28rem
+    border-radius: 8px
+
+  img
+    width: 100%
+    height: 28rem
+    
+    object-fit: cover
+    border-radius: 8px
+
+    transition: transform .3s ease-in-out
+  
+  p
+    font-size: 1.8rem
+    color: variables.$date
+    line-height: 2.8rem
+  
+@media (max-width: 768px)
+  :root
+    font-size: 53.75%
+
+  body
+    grid-template-columns: 1fr
+    grid-template-rows: .2fr .8fr
+    grid-template-areas: "profile" "timeline"
+
+  aside
+    border-right: none
+    padding: 3.2rem 1.2rem
+  
+  nav
+    overflow-y: visible
+    padding: 2.2rem
